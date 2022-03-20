@@ -5,10 +5,8 @@ using UnityEngine;
 public class Voise : MonoBehaviour
 {
     [SerializeField] private AudioSource _audioSource;
-    [SerializeField] private float _duration;
 
-    private float _step;
-    private float _runningTime;
+    private float _step = 0.5f;
     private float _target = 1f;
     private bool _isPlaying = true;
 
@@ -28,13 +26,11 @@ public class Voise : MonoBehaviour
     private IEnumerator ChangeVolume()
     {
         _audioSource.Play();
-        _runningTime += Time.deltaTime;
-        _step = _runningTime / _duration;
 
-        while (true)
+        while (_isPlaying == true)
         {
             _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, _target, _step);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
         }
     }
 
