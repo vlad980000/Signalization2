@@ -7,9 +7,10 @@ public class Voise : MonoBehaviour
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private float _duration;
 
-    private float _volumeScale;
+    private float _step;
     private float _runningTime;
     private float _target = 1f;
+    private bool _isPlaying = true;
 
     private void Start()
     {
@@ -28,17 +29,20 @@ public class Voise : MonoBehaviour
     {
         _audioSource.Play();
         _runningTime += Time.deltaTime;
-        _volumeScale = _runningTime / _duration;
+        _step = _runningTime / _duration;
 
-        _audioSource.volume = Mathf.MoveTowards(_volumeScale,_target,_runningTime);
-
-        yield return null; 
+        while (true)
+        {
+            _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, _target, _step);
+            yield return new WaitForSeconds(1f);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.TryGetComponent<Player>(out Player player))
         {
+            _isPlaying = false;
             _audioSource.Stop();
             StopCoroutine(ChangeVolume());
         }
