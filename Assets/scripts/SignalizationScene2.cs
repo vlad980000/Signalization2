@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Voise : MonoBehaviour
+public class SignalizationScene2 : MonoBehaviour
 {
     [SerializeField] private AudioSource _audioSource;
 
-    private float _step = 0.5f;
-    private float _target = 1;
+    private float _step = 1f;
+    private float _target = -1;
     private bool _isPlaying = true;
 
     private void Start()
@@ -31,16 +31,7 @@ public class Voise : MonoBehaviour
             _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, _target, _step);
             yield return new WaitForSeconds(0.5f);
 
-            if (_target == 1f)
-            {
-                yield return new WaitForSeconds(1f);
-                _target = 0f;
-            }
-            else if (_target == 0f)
-            {
-                yield return new WaitForSeconds(1f);
-                _target = 1f;
-            }
+            _target *= -1;
         }
     }
 

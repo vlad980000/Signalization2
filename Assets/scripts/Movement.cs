@@ -5,11 +5,12 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(SpriteRenderer))]
-public class Move : MonoBehaviour
+public class Movement : MonoBehaviour
 {
     private SpriteRenderer _spriteRenderer;
     private Rigidbody2D _rigidbody;
     private Animator _animator;
+    private const string VectorX = "VectorX";
     private Vector2 _moveVector;
     private float _moveSpeed = 5f;
     private bool _faceRight = true;
@@ -29,7 +30,7 @@ public class Move : MonoBehaviour
     private void Run()
     {
         _moveVector.x = Input.GetAxis("Horizontal");
-        _animator.SetFloat("VectorX", Mathf.Abs(_moveVector.x));
+        _animator.SetFloat(VectorX, Mathf.Abs(_moveVector.x));
         _rigidbody.velocity = new Vector2(_moveVector.x * _moveSpeed, _rigidbody.velocity.y);
 
         if (_faceRight == true && _moveVector.x < 0)
