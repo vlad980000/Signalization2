@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class moveCamera : MonoBehaviour
+public class CameraMove : MonoBehaviour
 {
     [Header("Parameters")]
     [SerializeField] private Transform _playerTransform;
@@ -13,7 +13,7 @@ public class moveCamera : MonoBehaviour
         {
             if (gameObject.TryGetComponent<Player>(out Player player))
             {
-                _playerTransform = GameObject.FindObjectOfType<Player>().transform;
+                _playerTransform = player.transform;
             }
         }
 

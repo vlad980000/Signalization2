@@ -11,7 +11,7 @@ public class Movement : MonoBehaviour
     private Rigidbody2D _rigidbody;
     private Animator _animator;
     private const string VectorX = "VectorX";
-    private Vector2 _moveVector;
+    private Vector2 _direction;
     private float _moveSpeed = 5f;
     private bool _faceRight = true;
 
@@ -29,15 +29,15 @@ public class Movement : MonoBehaviour
 
     private void Run()
     {
-        _moveVector.x = Input.GetAxis("Horizontal");
-        _animator.SetFloat(VectorX, Mathf.Abs(_moveVector.x));
-        _rigidbody.velocity = new Vector2(_moveVector.x * _moveSpeed, _rigidbody.velocity.y);
+        _direction.x = Input.GetAxis("Horizontal");
+        _animator.SetFloat(VectorX, Mathf.Abs(_direction.x));
+        _rigidbody.velocity = new Vector2(_direction.x * _moveSpeed, _rigidbody.velocity.y);
 
-        if (_faceRight == true && _moveVector.x < 0)
+        if (_faceRight == true && _direction.x < 0)
         {
             Flip();
         }
-        else if (_faceRight == false && _moveVector.x > 0)
+        else if (_faceRight == false && _direction.x > 0)
         {
             Flip();
         }
