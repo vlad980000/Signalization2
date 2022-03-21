@@ -9,13 +9,12 @@ public class moveCamera : MonoBehaviour
 
     private void Awake()
     {
-        if (this._playerTransform == null)
+        if (_playerTransform == null)
         {
-            if (this._playerTag == "")
+            if (gameObject.TryGetComponent<Player>(out Player player))
             {
-                this._playerTag = "player";
+                _playerTransform = GameObject.FindObjectOfType<Player>().transform;
             }
-            this._playerTransform = GameObject.FindGameObjectWithTag(this._playerTag).transform;
         }
 
         this.transform.position = new Vector3()
@@ -28,19 +27,18 @@ public class moveCamera : MonoBehaviour
 
     private void Update()
     {
-        if (this._playerTransform)
+        if (_playerTransform)
         {
             Vector3 target = new Vector3()
             {
                 x = this.transform.position.x,
                 y = this.transform.position.y,
                 z = this.transform.position.z - 10
-
             };
 
-            Vector3 position = Vector3.Lerp(this.transform.position, target, this._movingSpeed * Time.deltaTime);
+            Vector3 position = Vector3.Lerp(transform.position, target, _movingSpeed * Time.deltaTime);
 
-            this.transform.position = position;
+            transform.position = position;
         }
     }
 }
