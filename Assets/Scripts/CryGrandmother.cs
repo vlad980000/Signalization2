@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SignalizationScene2 : MonoBehaviour
+public class CryGrandmother : MonoBehaviour
 {
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private Player _player;
     private float _step = 1f;
     private float _target = -1;
     private bool _isPlaying = true;
-
 
     private void Start()
     {
@@ -26,13 +25,13 @@ public class SignalizationScene2 : MonoBehaviour
 
     private IEnumerator ChangeVolume()
     {
-        var WaitHalfSecond = new WaitForSeconds(0.5f);
+        var waitHalfSecond = new WaitForSeconds(0.5f);
 
         while (_isPlaying == true)
         {
             _audioSource.Play();
             _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, _target, _step);
-            yield return WaitHalfSecond;
+            yield return waitHalfSecond;
             _target *= _target;
         }
     }

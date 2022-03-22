@@ -956,7 +956,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68567395e28e7664c97240435f51c198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointTeleport: {fileID: 422664420}
+  _pointTeleport: {fileID: 422664420}
 --- !u!61 &992741598
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1027,7 +1027,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68567395e28e7664c97240435f51c198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointTeleport: {fileID: 1928473401}
+  _pointTeleport: {fileID: 1928473401}
 --- !u!61 &1311766137
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1674,6 +1674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 2010241737}
+  _player: {fileID: 0}
 --- !u!1 &2119314290
 GameObject:
   m_ObjectHideFlags: 0
