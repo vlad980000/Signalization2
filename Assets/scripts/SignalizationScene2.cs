@@ -5,10 +5,11 @@ using UnityEngine;
 public class SignalizationScene2 : MonoBehaviour
 {
     [SerializeField] private AudioSource _audioSource;
-
+    [SerializeField] private Player _player;
     private float _step = 1f;
     private float _target = -1;
     private bool _isPlaying = true;
+
 
     private void Start()
     {
@@ -17,9 +18,9 @@ public class SignalizationScene2 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.TryGetComponent<Player>(out Player player))
+        if(collision.TryGetComponent<Player>(out Player player))
         {
-            StartCoroutine(ChangeVolume());
+            var changeVolumeJob = StartCoroutine(ChangeVolume());
         }
     }
 
@@ -38,11 +39,13 @@ public class SignalizationScene2 : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent<Player>(out Player player))
+        var changeVolumeJob = StartCoroutine(ChangeVolume());
+
+        if (collision.TryGetComponent<Player>(out Player player))
         {
             _isPlaying = false;
             _audioSource.Stop();
-            StopCoroutine(ChangeVolume());
+            StopCoroutine(changeVolumeJob);
         }
     }
 }

@@ -22,9 +22,7 @@ public class CameraMove : MonoBehaviour
                 y = this.transform.position.y,
                 z = this.transform.position.z - 10
             };
-
             Vector3 position = Vector3.Lerp(transform.position, target, _movingSpeed * Time.deltaTime);
-
             transform.position = position;
         }
     }
