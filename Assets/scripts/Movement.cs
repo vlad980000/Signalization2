@@ -10,10 +10,11 @@ public class Movement : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private Rigidbody2D _rigidbody;
     private Animator _animator;
-    private const string VectorX = "VectorX";
     private Vector2 _direction;
     private float _moveSpeed = 5f;
     private bool _faceRight = true;
+    
+    private const string VectorX = "VectorX";
 
     private void Awake()
     {

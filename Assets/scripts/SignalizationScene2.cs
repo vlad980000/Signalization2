@@ -25,13 +25,14 @@ public class SignalizationScene2 : MonoBehaviour
 
     private IEnumerator ChangeVolume()
     {
+        var WaitHalfSecond = new WaitForSeconds(0.5f);
+
         while (_isPlaying == true)
         {
             _audioSource.Play();
             _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, _target, _step);
-            yield return new WaitForSeconds(0.5f);
-
-            _target *= -1;
+            yield return WaitHalfSecond;
+            _target *= _target;
         }
     }
 

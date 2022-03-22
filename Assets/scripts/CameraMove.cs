@@ -1,28 +1,15 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(Player))]
 public class CameraMove : MonoBehaviour
 {
-    [Header("Parameters")]
     [SerializeField] private Transform _playerTransform;
-    [SerializeField] private string _playerTag;
     [SerializeField] private float _movingSpeed;
+    [SerializeField] private Player _player;
 
-    private void Awake()
+    private void Start()
     {
-        if (_playerTransform == null)
-        {
-            if (gameObject.TryGetComponent<Player>(out Player player))
-            {
-                _playerTransform = player.transform;
-            }
-        }
-
-        this.transform.position = new Vector3()
-        {
-            x = _playerTransform.position.x,
-            y = _playerTransform.position.y,
-            z = _playerTransform.position.z - 10
-        };
+        GetComponent<Camera>().transform.position = _playerTransform.position;
     }
 
     private void Update()
